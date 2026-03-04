@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
+import { Float, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 
 function FogLayer() {
@@ -28,16 +28,16 @@ function FogLayer() {
 function FloatingLeaves() {
   const count = 12;
   const leaves = useMemo(() => {
-    const temp = [];
-    for (let i = 0; i < count; i++) {
-      temp.push({
-        x: (Math.random() - 0.5) * 20,
-        y: (Math.random() - 0.5) * 12,
-        scale: 0.02 + Math.random() * 0.03,
-        speed: 0.2 + Math.random() * 0.3,
-      });
-    }
-    return temp;
+    return Array.from({ length: count }, (_v, i) => {
+      const angle = (i / count) * Math.PI * 2;
+      const radius = 6 + (i % 3);
+      return {
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * 3,
+        scale: 0.02 + (i % 4) * 0.005,
+        speed: 0.25 + (i % 5) * 0.05,
+      };
+    });
   }, []);
 
   return (
@@ -75,6 +75,96 @@ function Mountains() {
   );
 }
 
+function Forest() {
+  const groupRef = useRef<THREE.Group>(null);
+  const trees = useMemo(
+    () =>
+      Array.from({ length: 30 }, (_v, i) => {
+        const row = Math.floor(i / 10);
+        const col = i % 10;
+        const xBase = (col - 5) * 0.9;
+        const xOffset = row % 2 === 0 ? 0.3 : -0.3;
+        return {
+          x: xBase + xOffset,
+          z: -4 - row * 1.3,
+          scale: 0.8 + (i % 3) * 0.12,
+          swayOffset: ((i * 0.8) % (Math.PI * 2)) + row * 0.3,
+        };
+      }),
+    []
+  );
+
+  useFrame((state) => {
+    if (!groupRef.current) return;
+    const t = state.clock.elapsedTime * 0.6;
+    groupRef.current.children.forEach((child, index) => {
+      const sway = Math.sin(t + index * 0.3) * 0.04;
+      child.rotation.z = sway;
+    });
+  });
+
+  return (
+    <group ref={groupRef} position={[0, -2.6, -6]}>
+      {trees.map((tree, index) => (
+        <group key={`${tree.x}-${tree.z}-${index}`} position={[tree.x, 0, tree.z]} scale={tree.scale}>
+          {/* Trunk */}
+          <mesh position={[0, 0.9, 0]}>
+            <cylinderGeometry args={[0.08, 0.12, 1.8, 8]} />
+            <meshStandardMaterial color="#4b3621" />
+          </mesh>
+          {/* Lower foliage */}
+          <mesh position={[0, 2.2, 0]}>
+            <coneGeometry args={[0.9, 2.2, 8]} />
+            <meshStandardMaterial color="#3aa76d" />
+          </mesh>
+          {/* Upper foliage */}
+          <mesh position={[0, 3.2, 0]}>
+            <coneGeometry args={[0.7, 1.6, 8]} />
+            <meshStandardMaterial color="#2fa89e" />
+          </mesh>
+        </group>
+      ))}
+    </group>
+  );
+}
+
+function Trail() {
+  return (
+    <mesh position={[0, -3.15, -6]} rotation={[-Math.PI / 2.4, 0, 0]}>
+      <planeGeometry args={[5, 14]} />
+      <meshBasicMaterial color="#c2a27a" transparent opacity={0.9} />
+    </mesh>
+  );
+}
+
+function Camp() {
+  return (
+    <group position={[0, -2.4, -4]}>
+      {/* Tent base */}
+      <mesh rotation={[0, Math.PI, 0]} position={[0, 0.4, 0]}>
+        <coneGeometry args={[0.9, 1.4, 4]} />
+        <meshStandardMaterial color="#f6f0e9" />
+      </mesh>
+      {/* Tent accent */}
+      <mesh rotation={[0, Math.PI, 0]} position={[0, 0.45, 0.02]}>
+        <coneGeometry args={[0.4, 1.2, 4]} />
+        <meshStandardMaterial color="#0f9d8f" />
+      </mesh>
+      {/* Campfire */}
+      <group position={[0.9, -0.15, 0.6]}>
+        <mesh>
+          <cylinderGeometry args={[0.12, 0.12, 0.1, 8]} />
+          <meshStandardMaterial color="#4b3621" />
+        </mesh>
+        <mesh position={[0, 0.18, 0]}>
+          <sphereGeometry args={[0.12, 10, 10]} />
+          <meshStandardMaterial emissive="#ffb347" color="#ffdd99" />
+        </mesh>
+      </group>
+    </group>
+  );
+}
+
 function Scene() {
   return (
     <>
@@ -82,6 +172,18 @@ function Scene() {
       <fog attach="fog" args={["#0a3d38", 5, 25]} />
       <FogLayer />
       <Mountains />
+      <Trail />
+      <Camp />
+      <Forest />
+      <Sparkles
+        count={40}
+        speed={0.2}
+        opacity={0.7}
+        size={2.5}
+        color="#cfe8e5"
+        scale={[10, 5, 4]}
+        position={[0, 1.2, -6]}
+      />
       <FloatingLeaves />
       <ambientLight intensity={0.6} />
       <directionalLight position={[5, 5, 5]} intensity={0.8} />
@@ -93,7 +195,7 @@ export function HeroScene() {
   return (
     <div className="absolute inset-0 z-0">
       <Canvas
-        camera={{ position: [0, 0, 8], fov: 60 }}
+        camera={{ position: [0, 1.4, 8], fov: 55 }}
         dpr={[1, 2]}
         gl={{ alpha: true, antialias: true }}
       >

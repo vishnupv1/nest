@@ -1,42 +1,64 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const HeroScene = dynamic(
-  () => import("./HeroScene").then((m) => ({ default: m.HeroScene })),
-  {
-    ssr: false,
-    loading: () => (
-      <div
-        className="absolute inset-0 z-0 bg-gradient-to-br from-[#0a3d38] via-[#1B5E57] to-[#0F9D8F]"
-        aria-hidden
-      />
-    ),
-  }
-);
-
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    // Slow-motion feeling
+    const handleLoaded = () => {
+      video.playbackRate = 0.5;
+    };
+    if (video.readyState >= 2) {
+      handleLoaded();
+    } else {
+      video.addEventListener("loadeddata", handleLoaded, { once: true });
+    }
+    return () => {
+      video.removeEventListener("loadeddata", handleLoaded);
+    };
+  }, []);
   return (
     <section
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       aria-label="Hero - Explore Wayanad with NEST Tourism"
     >
-      <HeroScene />
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
-      <div className="relative z-20 mx-auto max-w-5xl px-4 py-20 text-center">
+      {/* Background trekking / forest video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          ref={videoRef}
+          className="h-full w-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/yellowforest-poster.jpg"
+        >
+          <source src="/yellowforest.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Gradient overlay for readability */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/25 to-black/70" />
+
+      {/* Content */}
+      <div className="relative z-20 mx-auto max-w-5xl px-4 py-24 text-center">
         <motion.h1
-          className="text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl"
+          className="text-4xl font-bold tracking-tight text-[#FFF7E5] drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           Explore Wayanad with{" "}
-          <span className="text-[#CFE8E5]">NEST Tourism</span>
+          <span className="text-[#FFD27A]">NEST Tourism</span>
         </motion.h1>
         <motion.p
-          className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-white/95 drop-shadow-md"
+          className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-[#FFF3D6] drop-shadow-md"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}

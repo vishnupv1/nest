@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,10 +11,25 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#CFE8E5]/50"
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
+        scrolled
+          ? "bg-white/95 backdrop-blur-md border-b border-[#CFE8E5]/50"
+          : "bg-transparent border-transparent"
+      )}
       role="banner"
     >
       <nav
@@ -23,7 +38,12 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="text-xl font-bold tracking-tight text-[#1B5E57] hover:text-[#0F9D8F] transition-colors"
+          className={cn(
+            "text-xl font-bold tracking-tight transition-colors",
+            scrolled
+              ? "text-[#1B5E57] hover:text-[#0F9D8F]"
+              : "text-white hover:text-[#CFE8E5]"
+          )}
           aria-label={`${SITE.name} - Home`}
         >
           {SITE.name}
@@ -37,8 +57,14 @@ export function Navbar() {
                 href={link.href}
                 role="menuitem"
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-[#0F9D8F]",
-                  pathname === link.href ? "text-[#0F9D8F]" : "text-[#1A1A1A]"
+                  "text-sm font-medium transition-colors",
+                  scrolled
+                    ? pathname === link.href
+                      ? "text-[#0F9D8F]"
+                      : "text-[#1A1A1A] hover:text-[#0F9D8F]"
+                    : pathname === link.href
+                    ? "text-[#CFE8E5]"
+                    : "text-white hover:text-[#CFE8E5]"
                 )}
               >
                 {link.label}
@@ -51,7 +77,12 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 rounded-lg text-[#1B5E57] hover:bg-[#CFE8E5]/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F]"
+          className={cn(
+            "md:hidden p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F]",
+            scrolled
+              ? "text-[#1B5E57] hover:bg-[#CFE8E5]/50"
+              : "text-white hover:bg-white/10"
+          )}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
