@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { SITE } from "@/lib/constants";
 
 const timeline = [
@@ -9,7 +11,26 @@ const timeline = [
   { year: "Present", event: "Offering trekking, safari, homestays, and eco tourism experiences" },
 ];
 
+const inaugurationImages = Array.from({ length: 7 }, (_v, i) => `/inauguration/${i + 1}.jpeg`);
+
 export function AboutContent() {
+  const [currentInaugIndex, setCurrentInaugIndex] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentInaugIndex((prev) => (prev - 1 + inaugurationImages.length) % inaugurationImages.length);
+  };
+
+  const handleNext = () => {
+    setCurrentInaugIndex((prev) => (prev + 1) % inaugurationImages.length);
+  };
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setCurrentInaugIndex((prev) => (prev + 1) % inaugurationImages.length);
+    }, 6000);
+    return () => window.clearInterval(id);
+  }, []);
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
       <motion.header
@@ -113,6 +134,69 @@ export function AboutContent() {
             </motion.li>
           ))}
         </ul>
+      </motion.section>
+
+      <motion.section
+        className="mt-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-2xl font-semibold text-[#1B5E57]">
+          Inauguration Moments
+        </h2>
+        <p className="mt-3 text-[#1A1A1A]/80">
+          Highlights from the inauguration of North Wayanad Environmental Sustainable
+          Tourism Development Co Operative Society Ltd No.W-361.
+        </p>
+        <div className="mt-6">
+          <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-[#CFE8E5]/40">
+            <div className="relative aspect-[16/9]">
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={currentInaugIndex}
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={inaugurationImages[currentInaugIndex]}
+                    alt={`NEST inauguration photo ${currentInaugIndex + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 60vw"
+                    className="object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Controls */}
+            <div className="absolute inset-x-0 bottom-4 flex items-center justify-between px-4">
+              <button
+                type="button"
+                onClick={handlePrev}
+                className="rounded-full bg-black/45 px-3 py-1.5 text-sm font-medium text-white hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                aria-label="Previous inauguration photo"
+              >
+                ‹ Prev
+              </button>
+              <div className="flex items-center gap-2 rounded-full bg-black/40 px-3 py-1 text-xs font-medium text-white">
+                {currentInaugIndex + 1} / {inaugurationImages.length}
+              </div>
+              <button
+                type="button"
+                onClick={handleNext}
+                className="rounded-full bg-black/45 px-3 py-1.5 text-sm font-medium text-white hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                aria-label="Next inauguration photo"
+              >
+                Next ›
+              </button>
+            </div>
+          </div>
+        </div>
       </motion.section>
     </div>
   );

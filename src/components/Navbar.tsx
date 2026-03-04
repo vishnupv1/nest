@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -38,15 +39,29 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className={cn(
-            "text-xl font-bold tracking-tight transition-colors",
-            scrolled
-              ? "text-[#1B5E57] hover:text-[#0F9D8F]"
-              : "text-white hover:text-[#CFE8E5]"
-          )}
+          className="flex items-center gap-3"
           aria-label={`${SITE.name} - Home`}
         >
-          {SITE.name}
+          <div className="relative h-9 w-9 overflow-hidden rounded-full border border-white/40 bg-white/90 shadow-sm">
+            <Image
+              src="/android-chrome-192x192.png"
+              alt={SITE.name}
+              fill
+              className="object-contain"
+              sizes="36px"
+              priority
+            />
+          </div>
+          <span
+            className={cn(
+              "text-lg font-semibold tracking-tight transition-colors",
+              scrolled
+                ? "text-[#1B5E57] hover:text-[#0F9D8F]"
+                : "text-white hover:text-[#CFE8E5]"
+            )}
+          >
+            {SITE.name}
+          </span>
         </Link>
 
         {/* Desktop nav */}
