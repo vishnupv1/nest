@@ -39,7 +39,7 @@ export function Hero() {
           playsInline
           poster="/yellowforest-poster.jpg"
         >
-          <source src="/yellowforest.mp4" type="video/mp4" />
+          <source src="/yellowforest.webm" type="video/webm" />
         </video>
       </div>
 
