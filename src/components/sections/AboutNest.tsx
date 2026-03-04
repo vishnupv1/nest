@@ -50,7 +50,7 @@ export function AboutNest() {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
                 <Image
-                  src="https://images.unsplash.com/photo-1500534314211-0a24cd03f2c0?w=800&q=80"
+                  src="https://images.unsplash.com/photo-1519852476561-ec618b0183ba?q=80&w=2912&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Waterfall and lush greenery"
                   fill
                   sizes="(max-width: 1024px) 50vw, 25vw"
