@@ -4,7 +4,7 @@ import { AboutContent } from "@/components/sections/AboutContent";
 export const metadata: Metadata = {
   title: "About NEST | Sustainable Tourism Wayanad",
   description:
-    "North Wayanad Environmental Sustainable Tourism Development Co-Operative Society. Government-supported eco tourism in Kerala since 2021.",
+    "North Wayanad Environmental Sustainable Tourism Development Co Operative Society Ltd No.W-361. Government-supported eco tourism in Kerala since 2021.",
 };
 
 export default function AboutPage() {

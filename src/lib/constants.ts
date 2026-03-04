@@ -1,13 +1,13 @@
 export const SITE = {
   name: "NEST Tourism",
   fullName:
-    "North Wayanad Environmental Sustainable Tourism Development Co-Operative Society",
+    "North Wayanad Environmental Sustainable Tourism Development Co Operative Society Ltd No.W-361",
   tagline: "Explore Wayanad with NEST Tourism",
   description:
     "Sustainable tourism experiences in the heart of Kerala's most beautiful forests.",
   url: "https://www.nesttourismwayanad.com",
   email: "nesttourismwayanad@gmail.com",
-  phone: ["7902959959", "9526867152"],
+  phone: ["7902959959", "0495 2594959"],
   incorporatedDate: "03/03/2021",
 } as const;
 

@@ -63,7 +63,7 @@ export function ContactContent() {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={20} className="shrink-0 text-[#0F9D8F]" aria-hidden />
-                <span>Wayanad, Kerala, India</span>
+                <span>North Wayanad, Kerala, India</span>
               </li>
             </ul>
           </div>
@@ -90,6 +90,10 @@ export function ContactContent() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h2 className="text-xl font-semibold text-[#1B5E57]">Send a message</h2>
+          <p className="mt-2 text-sm text-[#1A1A1A]/70">
+            All tourist taxi services, guide services, adventure tourism, farm tourism
+            and ticketing services are available through NEST Tourism.
+          </p>
           <ContactForm />
         </motion.div>
       </div>

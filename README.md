@@ -1,6 +1,6 @@
 # NEST Tourism – Wayanad
 
-Premium tourism website for **The NEST** (North Wayanad Environmental Sustainable Tourism Development Co-Operative Society). Built with Next.js, TypeScript, Tailwind CSS, Framer Motion, GSAP, and Three.js.
+Premium tourism website for **The NEST** (North Wayanad Environmental Sustainable Tourism Development Co Operative Society Ltd No.W-361). Built with Next.js, TypeScript, Tailwind CSS, Framer Motion, GSAP, and Three.js.
 
 ## Features
 
