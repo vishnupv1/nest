@@ -71,14 +71,11 @@ export function ContactContent() {
           <div className="rounded-2xl overflow-hidden border border-[#CFE8E5] shadow-md aspect-video bg-[#CFE8E5]/20">
             <iframe
               title="Wayanad on Google Maps"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125320.635!2d76.0833!3d11.605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba60cf4a96b2f1d%3A0x6f2c1a3c5e5e5e5e!2sWayanad%2C%20Kerala!5e0!3m2!1sen!2sin!4v1234567890"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5679.3141365227!2d76.06005967639757!3d11.846034138552346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ddec73dcea4f%3A0x490489bd493a9800!2sNest%20Tourism%20Co%20Op%20Society%20Wayanad!5e1!3m2!1sen!2sin!4v1772617505025!5m2!1sen!2sin"
+              className="h-full w-full min-h-[280px] border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="min-h-[280px]"
+              allowFullScreen
             />
           </div>
         </motion.div>
