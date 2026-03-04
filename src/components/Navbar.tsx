@@ -55,11 +55,12 @@ export function Navbar() {
           </div>
           <span
             className={cn(
-              "text-lg font-semibold tracking-tight transition-colors",
+              "text-[1.15rem] font-semibold tracking-[0.16em] uppercase transition-colors",
               !scrolled && isHome
                 ? "text-white hover:text-[#CFE8E5]"
                 : "text-[#1B5E57] hover:text-[#0F9D8F]"
             )}
+            style={{ fontFamily: '"Poppins", var(--font-heading)' }}
           >
             {SITE.name}
           </span>
