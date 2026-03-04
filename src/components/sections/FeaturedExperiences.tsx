@@ -16,7 +16,7 @@ const placeholderImages: Record<string, string> = {
 export function FeaturedExperiences() {
   return (
     <section
-      className="py-20 sm:py-28 bg-gradient-to-b from-white to-[#CFE8E5]/10"
+      className="py-20 sm:py-28 bg-white"
       aria-labelledby="featured-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

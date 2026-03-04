@@ -43,8 +43,8 @@ export function Hero() {
         </video>
       </div>
 
-      {/* Gradient overlay for readability */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/25 to-black/70" />
+      {/* Subtle uniform overlay for readability */}
+      <div className="absolute inset-0 z-10 bg-black/45" />
 
       {/* Content */}
       <div className="relative z-20 mx-auto max-w-5xl px-4 py-24 text-center">
