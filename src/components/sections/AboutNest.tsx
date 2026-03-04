@@ -32,7 +32,7 @@ export function AboutNest() {
                   Our Mission
                 </h3>
                 <p className="mt-2 text-[#1A1A1A]/90">
-                  To design and deliver eco–friendly tourism experiences that\n+                  protect Wayanad&apos;s forests, rivers and wildlife, while creating\n+                  fair and dignified livelihoods for local communities through\n+                  responsible accommodation, guided tours and cooperative-driven\n+                  services.
+                  To design and deliver eco–friendly tourism experiences that protect Wayanad&apos;s forests, rivers and wildlife, while creating fair and dignified livelihoods for local communities through responsible accommodation, guided tours and cooperative-driven services.
                 </p>
               </div>
             </div>
