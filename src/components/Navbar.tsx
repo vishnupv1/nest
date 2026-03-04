@@ -13,6 +13,7 @@ export function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,9 +43,9 @@ export function Navbar() {
           className="flex items-center gap-3"
           aria-label={`${SITE.name} - Home`}
         >
-          <div className="relative h-9 w-9 overflow-hidden rounded-full border border-white/40 bg-white/90 shadow-sm">
+          <div className="relative h-9 w-9 overflow-hidden">
             <Image
-              src="/android-chrome-192x192.png"
+              src="/logo.png"
               alt={SITE.name}
               fill
               className="object-contain"
@@ -55,9 +56,9 @@ export function Navbar() {
           <span
             className={cn(
               "text-lg font-semibold tracking-tight transition-colors",
-              scrolled
-                ? "text-[#1B5E57] hover:text-[#0F9D8F]"
-                : "text-white hover:text-[#CFE8E5]"
+              !scrolled && isHome
+                ? "text-white hover:text-[#CFE8E5]"
+                : "text-[#1B5E57] hover:text-[#0F9D8F]"
             )}
           >
             {SITE.name}
@@ -73,13 +74,13 @@ export function Navbar() {
                 role="menuitem"
                 className={cn(
                   "text-sm font-medium transition-colors",
-                  scrolled
-                    ? pathname === link.href
-                      ? "text-[#0F9D8F]"
-                      : "text-[#1A1A1A] hover:text-[#0F9D8F]"
-                    : pathname === link.href
+                !scrolled && isHome
+                  ? pathname === link.href
                     ? "text-[#CFE8E5]"
                     : "text-white hover:text-[#CFE8E5]"
+                  : pathname === link.href
+                  ? "text-[#0F9D8F]"
+                  : "text-[#1A1A1A] hover:text-[#0F9D8F]"
                 )}
               >
                 {link.label}
@@ -94,9 +95,9 @@ export function Navbar() {
           onClick={() => setMobileOpen(!mobileOpen)}
           className={cn(
             "md:hidden p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F]",
-            scrolled
-              ? "text-[#1B5E57] hover:bg-[#CFE8E5]/50"
-              : "text-white hover:bg-white/10"
+            !scrolled && isHome
+              ? "text-white hover:bg-white/10"
+              : "text-[#1B5E57] hover:bg-[#CFE8E5]/30"
           )}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"

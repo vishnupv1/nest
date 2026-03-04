@@ -25,7 +25,13 @@
 }
 
 body {
-  background: var(--background);
+  /* Soft sky with subtle clouds */
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.9) 0, rgba(255, 255, 255, 0) 55%),
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.85) 0, rgba(255, 255, 255, 0) 55%),
+    radial-gradient(circle at 20% 70%, rgba(255, 255, 255, 0.9) 0, rgba(255, 255, 255, 0) 55%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.85) 0, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(180deg, #b3e6ff 0%, #e5f7ff 40%, #ffffff 100%);
   color: var(--foreground);
   font-family: var(--font-sans);
 }
