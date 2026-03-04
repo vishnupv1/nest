@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NEST Tourism – Wayanad
 
-## Getting Started
+Premium tourism website for **The NEST** (North Wayanad Environmental Sustainable Tourism Development Co-Operative Society). Built with Next.js, TypeScript, Tailwind CSS, Framer Motion, GSAP, and Three.js.
 
-First, run the development server:
+## Features
+
+- **Public site**: Home, About, Experiences, Contact with immersive hero (Three.js), animations (Framer Motion), and responsive layout
+- **Experiences catalog**: Trekking, Wildlife Safari, Waterfalls, Village Culture, Forest Camping, Adventure – with booking form
+- **Booking system**: Name, phone, email, date, participants, message – stored in MongoDB
+- **Contact form**: Submissions stored in MongoDB
+- **Admin dashboard** (CMS): Login, manage experiences (CRUD), view bookings, view contact submissions
+- **SEO**: Metadata, OpenGraph, Twitter cards, sitemap.xml, robots.txt
+
+## Tech stack
+
+- **Frontend**: Next.js 16 (App Router), TypeScript, Tailwind CSS v4, Framer Motion, GSAP, Three.js / React Three Fiber
+- **UI**: Lucide React icons, custom components
+- **Backend**: Next.js API Routes, Server Actions
+- **Database**: MongoDB
+- **Auth**: NextAuth.js (Credentials provider for admin)
+
+## Setup
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Environment variables**  
+   Copy `.env.example` to `.env.local` and set:
+   - `MONGODB_URI` – MongoDB connection string (required for bookings, contact, admin experiences)
+   - `NEXTAUTH_SECRET` – random string (e.g. `openssl rand -base64 32`)
+   - `NEXTAUTH_URL` – e.g. `http://localhost:3000`
+   - `ADMIN_EMAIL` – admin login email
+   - `ADMIN_PASSWORD_HASH` – bcrypt hash of admin password:
+     ```bash
+     node scripts/hash-admin-password.js YOUR_PASSWORD
+     ```
+     Put the printed hash in `ADMIN_PASSWORD_HASH`.
+
+3. **Run**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000). Admin: [http://localhost:3000/admin](http://localhost:3000/admin).
+
+## Build & deploy
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deploy to **Vercel**: connect the repo and set the same env vars. The app uses the `(site)` route group for the public site (with Navbar/Footer) and `/admin` for the dashboard (no Navbar/Footer).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app/(site)/` – Public pages (Home, About, Experiences, Contact) with shared layout (Navbar + Footer)
+- `src/app/admin/` – Admin login and dashboard (experiences, bookings, contact)
+- `src/app/api/` – Bookings, contact, experiences, NextAuth, admin APIs
+- `src/components/` – Navbar, Footer, Hero (Three.js), ExperienceCard, BookingForm, ContactForm, sections
+- `src/lib/` – DB, auth, constants, experiences data/seed, utils
 
-## Learn More
+## SEO keywords (example)
 
-To learn more about Next.js, take a look at the following resources:
+wayanad tourism, eco tourism wayanad, wayanad tourism packages, wayanad trekking, visit wayanad kerala, wayanad adventure tourism, wayanad nature tourism, kerala eco tourism, best places in wayanad.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Google Ads–oriented: wayanad tourism packages, best tourism in wayanad, wayanad eco tourism, visit wayanad kerala, wayanad trekking tours, wayanad forest tourism.
