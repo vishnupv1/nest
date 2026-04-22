@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { AboutContent } from "@/components/sections/AboutContent";
+import { aboutMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About NEST | Sustainable Tourism Wayanad",
-  description:
-    "North Wayanad Environmental Sustainable Tourism Development Co Operative Society Ltd No.W-361. Government-supported eco tourism in Kerala since 2021.",
-};
+export const metadata: Metadata = aboutMetadata();
 
 export default function AboutPage() {
   return (

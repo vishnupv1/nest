@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookingForm } from "@/components/BookingForm";
 import { getExperiences, getExperienceBySlug } from "@/lib/experiences";
+import { experienceDetailMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,10 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const exp = await getExperienceBySlug(slug);
   if (!exp) return { title: "Experience | NEST Tourism" };
-  return {
-    title: `${exp.title} | NEST Tourism Wayanad`,
-    description: exp.description,
-  };
+  return experienceDetailMetadata(slug, exp.title, exp.description);
 }
 
 export default async function ExperiencePage({ params }: Props) {

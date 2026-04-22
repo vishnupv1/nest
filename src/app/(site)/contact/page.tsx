@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { ContactContent } from "@/components/ContactContent";
+import { contactMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact | NEST Tourism Wayanad",
-  description:
-    "Contact NEST Tourism for Wayanad tours, bookings, and inquiries. Phone, email, and visit us in Wayanad.",
-};
+export const metadata: Metadata = contactMetadata();
 
 export default function ContactPage() {
   return (

@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { ExperiencesCatalog } from "@/components/ExperiencesCatalog";
+import { experiencesIndexMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Experiences | Trekking, Safari & Eco Tourism Wayanad",
-  description:
-    "Book nature trekking, wildlife safari, waterfall tours, tribal village visits, and forest camping in Wayanad. NEST Tourism eco experiences.",
-};
+export const metadata: Metadata = experiencesIndexMetadata();
 
 export default function ExperiencesPage() {
   return (

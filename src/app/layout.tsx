@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
 import { Providers } from "@/components/Providers";
+import { SEO_KEYWORDS } from "@/lib/seo";
 
 export const viewport: Viewport = {
   themeColor: "#0F9D8F",
@@ -16,18 +18,8 @@ export const metadata: Metadata = {
     template: "%s | NEST Tourism Wayanad",
   },
   description:
-    "Discover eco tourism experiences in Wayanad with NEST Tourism. Explore waterfalls, forests, wildlife and adventure tourism in Kerala. Book trekking, safari & homestays.",
-  keywords: [
-    "wayanad tourism",
-    "eco tourism wayanad",
-    "wayanad tourism packages",
-    "wayanad trekking",
-    "visit wayanad kerala",
-    "wayanad adventure tourism",
-    "wayanad nature tourism",
-    "kerala eco tourism",
-    "best places in wayanad",
-  ],
+    "Wayanad tourism and Kerala tour packages with NEST: eco experiences, trekking, safari, Wayanad natural products and wild honey. Sustainable travel in Wayanad.",
+  keywords: [...SEO_KEYWORDS],
   authors: [{ name: "NEST Tourism", url: "https://www.nesttourismwayanad.com" }],
   creator: "NEST Tourism",
   openGraph: {
@@ -37,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "NEST Tourism Wayanad",
     title: "Explore Wayanad Tourism | NEST Eco Tourism",
     description:
-      "Discover eco tourism experiences in Wayanad. Trekking, wildlife safari, waterfalls & sustainable tourism in Kerala.",
+      "Wayanad tourism, tour packages, Kerala experiences, and local natural products. Eco tourism and sustainable travel.",
     images: [
       {
         url: "/og-image.jpg",
@@ -50,14 +42,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Explore Wayanad Tourism | NEST Eco Tourism",
-    description: "Eco tourism in Wayanad - trekking, safari, waterfalls & more.",
+    description: "Wayanad tourism, Kerala tour packages, eco experiences & local products.",
   },
   robots: {
     index: true,
     follow: true,
-  },
-  alternates: {
-    canonical: "https://www.nesttourismwayanad.com",
   },
 };
 
@@ -70,6 +59,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen text-[#1A1A1A] antialiased">
         <Providers>{children}</Providers>
+        <OrganizationJsonLd />
       </body>
     </html>
   );
