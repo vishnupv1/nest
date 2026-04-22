@@ -22,6 +22,16 @@ export const NAV_LINKS = [
 /** Local products with images in /public/products */
 export const PRODUCTS = [
   {
+    name: "NEST Honey",
+    file: "nest honey.jpg.jpeg",
+    blurb: "Pure, locally sourced natural honey.",
+  },
+  {
+    name: "NEST Black Pepper",
+    file: "nests black pepper.jpg.jpeg",
+    blurb: "Whole black pepper, a Wayanad staple.",
+  },
+  {
     name: "NEST Coffee Beans",
     file: "nest coffee beans.jpg.jpeg",
     blurb: "Aromatic coffee from the Wayanad highlands.",
@@ -32,19 +42,9 @@ export const PRODUCTS = [
     blurb: "Sun-dried ginger for your kitchen and wellness.",
   },
   {
-    name: "NEST Honey",
-    file: "nest honey.jpg.jpeg",
-    blurb: "Pure, locally sourced natural honey.",
-  },
-  {
     name: "NEST Wild Turmeric",
     file: "nest wild turmeric.jpg.jpeg",
     blurb: "High-curcumin wild turmeric from the region.",
-  },
-  {
-    name: "NEST Black Pepper",
-    file: "nests black pepper.jpg.jpeg",
-    blurb: "Whole black pepper, a Wayanad staple.",
   },
 ] as const;
 
