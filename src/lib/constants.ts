@@ -15,8 +15,63 @@ export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/experiences", label: "Experiences" },
+  { href: "/products", label: "Products" },
   { href: "/contact", label: "Contact" },
 ] as const;
+
+/** Local products with images in /public/products */
+export const PRODUCTS = [
+  {
+    name: "NEST Coffee Beans",
+    file: "nest coffee beans.jpg.jpeg",
+    blurb: "Aromatic coffee from the Wayanad highlands.",
+  },
+  {
+    name: "NEST Dry Ginger",
+    file: "nest dry ginger.jpg.jpeg",
+    blurb: "Sun-dried ginger for your kitchen and wellness.",
+  },
+  {
+    name: "NEST Honey",
+    file: "nest honey.jpg.jpeg",
+    blurb: "Pure, locally sourced natural honey.",
+  },
+  {
+    name: "NEST Wild Turmeric",
+    file: "nest wild turmeric.jpg.jpeg",
+    blurb: "High-curcumin wild turmeric from the region.",
+  },
+  {
+    name: "NEST Black Pepper",
+    file: "nests black pepper.jpg.jpeg",
+    blurb: "Whole black pepper, a Wayanad staple.",
+  },
+] as const;
+
+export function publicProductImagePath(file: string): string {
+  return `/products/${encodeURIComponent(file)}`;
+}
+
+/** E.164 without + for wa.me (India +91, primary mobile). */
+function whatsAppNumberE164(): string {
+  return `91${SITE.phone[0].replace(/\D/g, "")}`;
+}
+
+/** General WhatsApp chat. Optional pre-filled message. */
+export function getWhatsAppChatUrl(presetText?: string): string {
+  const n = whatsAppNumberE164();
+  if (presetText?.trim()) {
+    return `https://wa.me/${n}?text=${encodeURIComponent(presetText.trim())}`;
+  }
+  return `https://wa.me/${n}`;
+}
+
+/** WhatsApp order link using the primary contact mobile (with India country code). */
+export function getWhatsAppProductOrderUrl(productName: string): string {
+  return getWhatsAppChatUrl(
+    `Hi, I would like to order: ${productName} (from the NEST Tourism website).`
+  );
+}
 
 export const WHY_CHOOSE = [
   {

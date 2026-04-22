@@ -26,5 +26,3 @@ export async function getDb(): Promise<Db> {
   const c = await clientPromise;
   return c.db("nesttourism");
 }
-
-export default clientPromise ?? Promise.reject(new Error("MONGODB_URI is not set"));

@@ -1,46 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 export function Hero() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    // Slow-motion feeling
-    const handleLoaded = () => {
-      video.playbackRate = 0.5;
-    };
-    if (video.readyState >= 2) {
-      handleLoaded();
-    } else {
-      video.addEventListener("loadeddata", handleLoaded, { once: true });
-    }
-    return () => {
-      video.removeEventListener("loadeddata", handleLoaded);
-    };
-  }, []);
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       aria-label="Hero - Explore Wayanad with NEST Tourism"
     >
-      {/* Background trekking / forest video */}
       <div className="absolute inset-0 z-0">
-        <video
-          ref={videoRef}
+        <img
+          src="/nature.gif"
+          alt=""
           className="h-full w-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/yellowforest-poster.jpg"
-        >
-          <source src="/yellowforest.mp4" type="video/mp4" />
-        </video>
+          aria-hidden
+        />
       </div>
 
       {/* Subtle uniform overlay for readability */}

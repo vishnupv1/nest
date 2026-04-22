@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { WhatsAppBubble } from "@/components/WhatsAppBubble";
 
 export default function SiteLayout({
   children,
@@ -11,6 +12,7 @@ export default function SiteLayout({
       <Navbar />
       <main className="min-h-screen">{children}</main>
       <Footer />
+      <WhatsAppBubble />
     </>
   );
 }
