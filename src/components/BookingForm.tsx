@@ -53,7 +53,7 @@ export function BookingForm({
   return (
     <motion.form
       onSubmit={handleSubmit}
-      className="space-y-4 rounded-2xl bg-[#CFE8E5]/20 p-6 sm:p-8"
+      className="section-elevated space-y-4 rounded-2xl p-6 sm:p-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -66,7 +66,7 @@ export function BookingForm({
             type="text"
             name="name"
             required
-            className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+            className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
             placeholder="Your name"
           />
         </label>
@@ -76,7 +76,7 @@ export function BookingForm({
             type="tel"
             name="phone"
             required
-            className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+            className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
             placeholder="Phone number"
           />
         </label>
@@ -87,7 +87,7 @@ export function BookingForm({
           type="email"
           name="email"
           required
-          className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+          className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
           placeholder="your@email.com"
         />
       </label>
@@ -99,7 +99,7 @@ export function BookingForm({
             name="date"
             required
             min={new Date().toISOString().split("T")[0]}
-            className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+            className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
           />
         </label>
         <label className="block">
@@ -110,7 +110,7 @@ export function BookingForm({
             required
             min={1}
             max={20}
-            className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+            className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
             placeholder="Number of people"
           />
         </label>
@@ -120,7 +120,7 @@ export function BookingForm({
         <textarea
           name="message"
           rows={3}
-          className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+          className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
           placeholder="Special requests or questions"
         />
       </label>
@@ -134,7 +134,7 @@ export function BookingForm({
       <button
         type="submit"
         disabled={status === "loading"}
-        className="w-full rounded-full bg-[#0F9D8F] py-3.5 font-semibold text-white transition-all hover:bg-[#2FA89E] hover:scale-[1.02] disabled:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F] focus-visible:ring-offset-2"
+        className="btn-primary w-full rounded-full py-3.5 font-semibold text-white transition-all hover:scale-[1.02] disabled:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F] focus-visible:ring-offset-2"
       >
         {status === "loading" ? "Submitting..." : "Submit Booking"}
       </button>

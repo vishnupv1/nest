@@ -32,7 +32,7 @@ export function AboutContent() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <motion.header
         className="text-center"
         initial={{ opacity: 0, y: 20 }}
@@ -64,7 +64,7 @@ export function AboutContent() {
       </motion.section>
 
       <motion.section
-        className="mt-12 rounded-2xl bg-[#CFE8E5]/20 p-6 sm:p-8"
+        className="section-elevated mt-12 rounded-2xl p-6 sm:p-8"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -151,7 +151,7 @@ export function AboutContent() {
           Tourism Development Co Operative Society Ltd No.W-361.
         </p>
         <div className="mt-6">
-          <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-[#CFE8E5]/40">
+          <div className="section-elevated relative mx-auto w-full overflow-hidden rounded-2xl">
             <div className="relative aspect-[16/9]">
               <AnimatePresence initial={false} mode="wait">
                 <motion.div
@@ -212,7 +212,7 @@ export function AboutContent() {
         <p className="mt-3 text-[#1A1A1A]/80">
           Find NEST Tourism Co-operative Society in Wayanad on the map below.
         </p>
-        <div className="mt-6 overflow-hidden rounded-2xl shadow-md ring-1 ring-[#CFE8E5]">
+        <div className="section-elevated mt-6 overflow-hidden rounded-2xl">
           <div className="relative aspect-[4/3] w-full">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5679.3141365227!2d76.06005967639757!3d11.846034138552346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ddec73dcea4f%3A0x490489bd493a9800!2sNest%20Tourism%20Co%20Op%20Society%20Wayanad!5e1!3m2!1sen!2sin!4v1772617505025!5m2!1sen!2sin"

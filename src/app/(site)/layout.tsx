@@ -10,7 +10,7 @@ export default function SiteLayout({
   return (
     <>
       <Navbar />
-      <main className="min-h-screen">{children}</main>
+      <main className="min-h-screen pt-2">{children}</main>
       <Footer />
       <WhatsAppBubble />
     </>

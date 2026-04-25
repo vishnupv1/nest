@@ -15,10 +15,7 @@ const placeholderImages: Record<string, string> = {
 
 export function FeaturedExperiences() {
   return (
-    <section
-      className="py-20 sm:py-28 bg-white"
-      aria-labelledby="featured-heading"
-    >
+    <section className="section-soft py-20 sm:py-28" aria-labelledby="featured-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center"
@@ -48,7 +45,7 @@ export function FeaturedExperiences() {
             >
               <Link
                 href={`/experiences/${exp.slug}`}
-                className="group block overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-[#CFE8E5]/50 transition-all hover:shadow-xl hover:ring-[#0F9D8F]/30"
+                className="card-premium group block overflow-hidden rounded-2xl transition-all hover:shadow-xl hover:ring-[#0F9D8F]/30"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
@@ -73,7 +70,7 @@ export function FeaturedExperiences() {
         >
           <Link
             href="/experiences"
-            className="inline-flex items-center rounded-full bg-[#0F9D8F] px-8 py-3.5 font-semibold text-white transition-all hover:bg-[#2FA89E] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F] focus-visible:ring-offset-2"
+            className="btn-primary inline-flex items-center rounded-full px-8 py-3.5 font-semibold text-white transition-all hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F] focus-visible:ring-offset-2"
           >
             View All Experiences
           </Link>

@@ -1,0 +1,46 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Misty Hilly Landscape Background</title>
+  <desc id="desc">Layered vector hills with fog for a serene Wayanad-inspired atmosphere.</desc>
+
+  <defs>
+    <linearGradient id="sky" x1="960" y1="0" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F0F6FF"/>
+      <stop offset="0.5" stop-color="#DEEAF8"/>
+      <stop offset="1" stop-color="#CBDDEF"/>
+    </linearGradient>
+    <linearGradient id="hillA" x1="960" y1="430" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C99BD"/>
+      <stop offset="1" stop-color="#526E93"/>
+    </linearGradient>
+    <linearGradient id="hillB" x1="960" y1="520" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6B86A9"/>
+      <stop offset="1" stop-color="#3E5C84"/>
+    </linearGradient>
+    <linearGradient id="hillC" x1="960" y1="610" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#58749B"/>
+      <stop offset="1" stop-color="#2D4B73"/>
+    </linearGradient>
+    <radialGradient id="mistLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(360 360) rotate(8) scale(620 230)">
+      <stop stop-color="white" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mistCenter" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(980 300) rotate(-4) scale(700 250)">
+      <stop stop-color="white" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mistRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1560 380) rotate(-10) scale(580 210)">
+      <stop stop-color="white" stop-opacity="0.52"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+
+  <path d="M0 540C125 472 264 450 390 478C514 506 607 566 726 570C864 575 945 485 1078 452C1239 412 1408 446 1540 516C1654 577 1774 606 1920 586V1080H0V540Z" fill="url(#hillA)"/>
+  <path d="M0 650C132 598 285 582 404 614C541 651 650 744 785 739C923 734 1003 632 1130 602C1280 567 1477 629 1596 696C1696 753 1800 773 1920 753V1080H0V650Z" fill="url(#hillB)"/>
+  <path d="M0 770C136 726 244 724 372 751C510 781 646 874 800 860C933 848 1024 768 1154 739C1305 705 1460 739 1580 806C1698 873 1815 898 1920 882V1080H0V770Z" fill="url(#hillC)"/>
+
+  <ellipse cx="350" cy="370" rx="620" ry="230" fill="url(#mistLeft)"/>
+  <ellipse cx="980" cy="300" rx="700" ry="250" fill="url(#mistCenter)"/>
+  <ellipse cx="1570" cy="390" rx="580" ry="210" fill="url(#mistRight)"/>
+</svg>

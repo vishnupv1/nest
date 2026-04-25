@@ -2,14 +2,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
+  --background: #f6fbfa;
+  --foreground: #132522;
   --primary: #0f9d8f;
   --primary-teal: #2fa89e;
   --forest: #1b5e57;
   --mint: #cfe8e5;
   --accent: #3aa76d;
   --white: #ffffff;
+  --surface: rgba(255, 255, 255, 0.84);
+  --surface-strong: #ffffff;
+  --border-soft: rgba(15, 157, 143, 0.18);
 }
 
 @theme inline {
@@ -25,9 +28,43 @@
 }
 
 body {
-  background: #ffffff;
+  background:
+    linear-gradient(180deg, rgba(246, 251, 249, 0.56), rgba(230, 242, 239, 0.72)),
+    url("/backgrounds/misty-hills.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center, center;
+  background-attachment: fixed, fixed;
   color: var(--foreground);
   font-family: var(--font-sans);
+  letter-spacing: 0.01em;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(75% 35% at 50% 26%, rgba(255, 255, 255, 0.46), transparent 72%),
+    radial-gradient(62% 24% at 18% 38%, rgba(255, 255, 255, 0.3), transparent 74%),
+    radial-gradient(62% 24% at 82% 42%, rgba(255, 255, 255, 0.24), transparent 74%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0.42;
+  background-image:
+    radial-gradient(circle at 25% 35%, rgba(255, 255, 255, 0.22) 0.6px, transparent 1px),
+    radial-gradient(circle at 75% 72%, rgba(18, 79, 73, 0.12) 0.8px, transparent 1.2px);
+  background-size: 130px 130px, 180px 180px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -43,6 +80,57 @@ html {
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(15, 157, 143, 0.22);
+  color: #0f3430;
+}
+
+/* Premium layout utilities */
+.section-soft {
+  background: linear-gradient(180deg, rgba(248, 253, 252, 0.72), rgba(241, 249, 247, 0.62));
+}
+
+.section-elevated {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  box-shadow:
+    0 24px 44px -28px rgba(9, 33, 30, 0.3),
+    0 10px 22px -18px rgba(13, 56, 50, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.card-premium {
+  background: linear-gradient(160deg, var(--surface-strong), rgba(250, 255, 254, 0.96));
+  border: 1px solid var(--border-soft);
+  box-shadow:
+    0 20px 34px -24px rgba(8, 34, 30, 0.34),
+    0 8px 20px -16px rgba(18, 74, 66, 0.2);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0f9d8f, #2fa89e);
+  color: #fff;
+  box-shadow: 0 12px 24px -16px rgba(15, 157, 143, 0.85);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.02);
+  box-shadow: 0 16px 30px -16px rgba(15, 157, 143, 0.9);
+}
+
+.input-premium {
+  border: 1px solid rgba(27, 94, 87, 0.16);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.input-premium:focus {
+  border-color: rgba(15, 157, 143, 0.58);
+  box-shadow:
+    0 0 0 3px rgba(15, 157, 143, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
 /* Gradient text utility */

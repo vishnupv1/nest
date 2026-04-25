@@ -29,7 +29,7 @@ export function ContactContent() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div>
+          <div className="section-elevated rounded-2xl p-6 sm:p-8">
             <h2 className="text-xl font-semibold text-[#0F9D8F]">Contact details</h2>
             <ul className="mt-4 space-y-4 text-[#1A1A1A]/90">
               <li className="flex items-center gap-3">
@@ -68,7 +68,7 @@ export function ContactContent() {
             </ul>
           </div>
 
-          <div className="rounded-2xl overflow-hidden border border-[#CFE8E5] shadow-md aspect-video bg-[#CFE8E5]/20">
+          <div className="section-elevated aspect-video overflow-hidden rounded-2xl">
             <iframe
               title="Wayanad on Google Maps"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5679.3141365227!2d76.06005967639757!3d11.846034138552346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ddec73dcea4f%3A0x490489bd493a9800!2sNest%20Tourism%20Co%20Op%20Society%20Wayanad!5e1!3m2!1sen!2sin!4v1772617505025!5m2!1sen!2sin"
@@ -81,7 +81,7 @@ export function ContactContent() {
         </motion.div>
 
         <motion.div
-          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-[#CFE8E5] sm:p-8"
+          className="section-elevated rounded-2xl p-6 sm:p-8"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}

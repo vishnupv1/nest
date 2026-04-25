@@ -9,10 +9,7 @@ const icons = { Leaf, Users, Compass, Sparkles } as const;
 
 export function WhyChoose() {
   return (
-    <section
-      className="py-20 sm:py-28 bg-white"
-      aria-labelledby="why-choose-heading"
-    >
+    <section className="section-soft py-20 sm:py-28" aria-labelledby="why-choose-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.h2
           id="why-choose-heading"
@@ -33,7 +30,7 @@ export function WhyChoose() {
             return (
               <motion.article
                 key={item.title}
-                className="group rounded-2xl bg-[#CFE8E5]/20 p-6 ring-1 ring-[#CFE8E5]/50 transition-all hover:ring-[#0F9D8F]/30 hover:shadow-lg"
+                className="card-premium group rounded-2xl p-6 transition-all hover:ring-[#0F9D8F]/30 hover:shadow-lg"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}

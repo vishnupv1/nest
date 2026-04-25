@@ -53,7 +53,7 @@ export function ContactForm() {
             type="text"
             name="name"
             required
-            className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+            className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
             placeholder="Your name"
           />
         </label>
@@ -63,7 +63,7 @@ export function ContactForm() {
             type="email"
             name="email"
             required
-            className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+            className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
             placeholder="your@email.com"
           />
         </label>
@@ -74,7 +74,7 @@ export function ContactForm() {
           type="text"
           name="subject"
           required
-          className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+          className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
           placeholder="Subject"
         />
       </label>
@@ -84,7 +84,7 @@ export function ContactForm() {
           name="message"
           required
           rows={5}
-          className="mt-1 w-full rounded-lg border border-[#CFE8E5] bg-white px-4 py-2.5 text-[#1A1A1A] focus:border-[#0F9D8F] focus:outline-none focus:ring-2 focus:ring-[#0F9D8F]/20"
+          className="input-premium mt-1 w-full rounded-lg px-4 py-2.5 text-[#1A1A1A] focus:outline-none"
           placeholder="Your message"
         />
       </label>
@@ -98,7 +98,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="w-full rounded-full bg-[#0F9D8F] py-3.5 font-semibold text-white transition-all hover:bg-[#2FA89E] hover:scale-[1.02] disabled:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F] focus-visible:ring-offset-2 sm:w-auto sm:px-10"
+        className="btn-primary w-full rounded-full py-3.5 font-semibold text-white transition-all hover:scale-[1.02] disabled:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F] focus-visible:ring-offset-2 sm:w-auto sm:px-10"
       >
         {status === "loading" ? "Sending..." : "Send Message"}
       </button>

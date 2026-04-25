@@ -27,9 +27,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-[#CFE8E5]/50"
+          ? "bg-white/45 backdrop-blur-xl border-b border-white/35 shadow-[0_14px_32px_-24px_rgba(7,31,28,0.45)]"
           : "bg-transparent border-transparent"
       )}
       role="banner"
@@ -43,7 +43,7 @@ export function Navbar() {
           className="flex items-center gap-3"
           aria-label={`${SITE.name} - Home`}
         >
-          <div className="relative h-9 w-9 overflow-hidden">
+          <div className="relative h-10 w-10 overflow-hidden rounded-full ring-1 ring-white/40 shadow-lg">
             <Image
               src="/logo.png"
               alt={SITE.name}
@@ -57,7 +57,7 @@ export function Navbar() {
             className={cn(
               "text-[1.15rem] font-semibold tracking-[0.16em] uppercase transition-colors",
               !scrolled && isHome
-                ? "text-white hover:text-[#CFE8E5]"
+                ? "text-white drop-shadow hover:text-[#CFE8E5]"
                 : "text-[#1B5E57] hover:text-[#0F9D8F]"
             )}
             style={{ fontFamily: '"Poppins", var(--font-heading)' }}
@@ -67,21 +67,21 @@ export function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-8" role="menubar">
+        <ul className="hidden md:flex items-center gap-2 rounded-full border border-white/30 bg-white/40 px-2 py-1.5 shadow-[0_12px_24px_-22px_rgba(10,33,31,0.6)] backdrop-blur-md" role="menubar">
           {NAV_LINKS.map((link) => (
             <li key={link.href} role="none">
               <Link
                 href={link.href}
                 role="menuitem"
                 className={cn(
-                  "text-sm font-medium transition-colors",
+                  "rounded-full px-4 py-2 text-sm font-medium transition-all",
                 !scrolled && isHome
                   ? pathname === link.href
-                    ? "text-[#CFE8E5]"
-                    : "text-white hover:text-[#CFE8E5]"
+                    ? "bg-white/15 text-[#CFE8E5]"
+                    : "text-white hover:bg-white/10 hover:text-[#CFE8E5]"
                   : pathname === link.href
-                  ? "text-[#0F9D8F]"
-                  : "text-[#1A1A1A] hover:text-[#0F9D8F]"
+                  ? "bg-[#0F9D8F]/12 text-[#0F9D8F]"
+                  : "text-[#1A1A1A] hover:bg-[#CFE8E5]/40 hover:text-[#0F9D8F]"
                 )}
               >
                 {link.label}
@@ -95,10 +95,10 @@ export function Navbar() {
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
           className={cn(
-            "md:hidden p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F]",
+            "md:hidden rounded-xl border p-2.5 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F]",
             !scrolled && isHome
-              ? "text-white hover:bg-white/10"
-              : "text-[#1B5E57] hover:bg-[#CFE8E5]/30"
+              ? "border-white/35 text-white hover:bg-white/10"
+              : "border-[#CFE8E5] text-[#1B5E57] hover:bg-[#CFE8E5]/30"
           )}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
@@ -117,7 +117,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden border-t border-[#CFE8E5]/50 bg-white"
+            className="md:hidden overflow-hidden border-t border-[#CFE8E5]/50 bg-white/95 shadow-lg backdrop-blur-xl"
           >
             <ul className="px-4 py-4 space-y-2" role="menu">
               {NAV_LINKS.map((link) => (

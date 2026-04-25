@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { ExperienceCard } from "@/components/ExperienceCard";
 
 export interface Experience {
@@ -70,6 +71,15 @@ const defaultExperiences: Experience[] = [
   },
 ];
 
+const infoBadges = [
+  "Eco friendly",
+  "Local guides",
+  "Small groups",
+  "Family friendly",
+  "Photography spots",
+  "Customizable",
+];
+
 export function ExperiencesCatalog() {
   const [experiences, setExperiences] = useState<Experience[]>(defaultExperiences);
 
@@ -83,10 +93,7 @@ export function ExperiencesCatalog() {
   }, []);
 
   return (
-    <section
-      className="py-16 sm:py-24"
-      aria-labelledby="experiences-heading"
-    >
+    <section className="section-soft py-16 sm:py-24" aria-labelledby="experiences-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1
@@ -99,21 +106,84 @@ export function ExperiencesCatalog() {
             Book sustainable tourism experiences in Wayanad—trekking, safari, waterfalls, and more.
           </p>
         </div>
+        <div className="mt-7 text-center">
+          <p className="inline-flex items-center rounded-full border border-[#0F9D8F]/30 bg-[#0F9D8F]/12 px-5 py-2.5 text-sm font-semibold tracking-wide text-[#0E6F66] shadow-[0_10px_24px_-20px_rgba(15,157,143,0.95)] ring-1 ring-white/60 backdrop-blur-sm sm:text-base">
+            Scroll to reveal each experience one by one
+          </p>
+        </div>
         <div
           id="book"
-          className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          className="relative mt-10"
         >
           {experiences.map((exp, index) => (
-            <ExperienceCard
+            <motion.div
               key={exp._id}
-              title={exp.title}
-              description={exp.description}
-              image={exp.image}
-              slug={exp.slug}
-              price={exp.price}
-              duration={exp.duration}
-              index={index}
-            />
+              initial={{ opacity: 0, y: 70 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 0.65, ease: "easeOut" }}
+              className="relative flex min-h-[68vh] items-center md:min-h-[74vh]"
+            >
+              <div className="grid w-full items-center gap-8 md:grid-cols-2 md:gap-12">
+                <aside
+                  className={`section-elevated hidden rounded-2xl p-6 md:block ${
+                    index % 2 === 0 ? "md:order-2" : "md:order-1"
+                  }`}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0F9D8F]">
+                    Experience Highlights
+                  </p>
+                  <h3 className="mt-2 text-xl font-semibold text-[#1B5E57]">
+                    {exp.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#1A1A1A]/80">
+                    Best suited for travelers who enjoy authentic nature-led moments in Wayanad.
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-[#1A1A1A]/85">
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#0F9D8F]" />
+                      {exp.duration}
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#0F9D8F]" />
+                      {exp.price}
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#0F9D8F]" />
+                      Flexible slots available
+                    </li>
+                  </ul>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {infoBadges.slice(index % 3, (index % 3) + 3).map((badge) => (
+                      <span
+                        key={`${exp._id}-${badge}`}
+                        className="rounded-full border border-[#0F9D8F]/20 bg-white/70 px-3 py-1 text-xs font-medium text-[#0E6F66]"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                </aside>
+
+                <div
+                  className={`relative z-10 w-full ${
+                    index % 2 === 0 ? "md:order-1" : "md:order-2"
+                  }`}
+                >
+                <ExperienceCard
+                  title={exp.title}
+                  description={exp.description}
+                  image={exp.image}
+                  slug={exp.slug}
+                  price={exp.price}
+                  duration={exp.duration}
+                  index={index}
+                  variant="featured"
+                  repeatOnScroll
+                />
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
