@@ -44,7 +44,7 @@ export function FeaturedProducts() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               whileHover={{ y: -8, scale: 1.015 }}
-              className="card-premium group relative flex w-fit max-w-full flex-col overflow-hidden rounded-2xl"
+              className="card-premium group relative flex w-full max-w-full flex-col overflow-hidden rounded-2xl"
             >
               <div className="relative overflow-hidden">
                 <img

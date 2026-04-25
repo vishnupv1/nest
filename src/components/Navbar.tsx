@@ -67,14 +67,17 @@ export function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-2 rounded-full border border-white/30 bg-white/40 px-2 py-1.5 shadow-[0_12px_24px_-22px_rgba(10,33,31,0.6)] backdrop-blur-md" role="menubar">
-          {NAV_LINKS.map((link) => (
+        <ul className="hidden md:flex items-center gap-1.5 rounded-full border border-white/30 bg-white/40 px-1.5 py-1.5 shadow-[0_12px_24px_-22px_rgba(10,33,31,0.6)] backdrop-blur-md" role="menubar">
+          {NAV_LINKS.map((link, index) => (
             <li key={link.href} role="none">
               <Link
                 href={link.href}
                 role="menuitem"
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-all",
+                  "rounded-full py-2 text-sm font-medium transition-all",
+                index === 0 ? "pl-3 pr-3.5" : "",
+                index === NAV_LINKS.length - 1 ? "pl-3.5 pr-3" : "",
+                index > 0 && index < NAV_LINKS.length - 1 ? "px-3.5" : "",
                 !scrolled && isHome
                   ? pathname === link.href
                     ? "bg-white/15 text-[#CFE8E5]"
