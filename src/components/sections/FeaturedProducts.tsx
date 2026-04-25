@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MessageCircle, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight, Leaf, Sparkles } from "lucide-react";
 import {
   PRODUCTS,
   getWhatsAppProductOrderUrl,
@@ -44,17 +44,21 @@ export function FeaturedProducts() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               whileHover={{ y: -8, scale: 1.015 }}
-              className="card-premium group relative flex w-full max-w-full flex-col overflow-hidden rounded-2xl"
+              className="card-premium group relative flex w-full max-w-[22rem] flex-col overflow-hidden rounded-3xl"
             >
               <div className="relative overflow-hidden">
                 <img
                   src={publicProductImagePath(product.file)}
                   alt={product.name}
-                  className="block h-auto w-auto max-w-full transition-transform duration-700 group-hover:scale-105"
+                  className="block h-auto w-full max-w-full transition-transform duration-700 group-hover:scale-105"
                   loading={index === 0 ? "eager" : "lazy"}
                   decoding="async"
                   fetchPriority={index === 0 ? "high" : "low"}
                 />
+                <div className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full border border-white/40 bg-[#0f3430]/65 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur">
+                  <Leaf size={12} aria-hidden />
+                  Farm Fresh
+                </div>
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a2e2b]/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
               <div className="flex w-full min-w-0 flex-1 flex-col p-4 sm:p-5">
@@ -62,6 +66,13 @@ export function FeaturedProducts() {
                   {product.name}
                 </h3>
                 <p className="mt-1 text-sm text-[#1A1A1A]/80">{product.blurb}</p>
+                <div className="mt-3 flex items-center justify-between border-t border-[#0F9D8F]/12 pt-3 text-xs font-medium text-[#1B5E57]/80">
+                  <span className="inline-flex items-center gap-1">
+                    <Sparkles size={13} aria-hidden />
+                    Wayanad sourced
+                  </span>
+                  <span>Limited stock</span>
+                </div>
                 <a
                   href={getWhatsAppProductOrderUrl(product.name)}
                   target="_blank"
