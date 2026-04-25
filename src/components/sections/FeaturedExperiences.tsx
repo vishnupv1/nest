@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FEATURED_EXPERIENCES } from "@/lib/constants";
 
 const placeholderImages: Record<string, string> = {
@@ -14,6 +16,27 @@ const placeholderImages: Record<string, string> = {
 };
 
 export function FeaturedExperiences() {
+  const perView = 1;
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setCurrent((prev) =>
+        prev >= FEATURED_EXPERIENCES.length - 1 ? 0 : prev + 1
+      );
+    }, 4500);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const maxIndex = FEATURED_EXPERIENCES.length - 1;
+  const slides = useMemo(
+    () => Array.from({ length: maxIndex + 1 }, (_v, i) => i),
+    [maxIndex]
+  );
+
+  const next = () => setCurrent((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  const prev = () => setCurrent((prev) => (prev <= 0 ? maxIndex : prev - 1));
+
   return (
     <section className="section-soft py-20 sm:py-28" aria-labelledby="featured-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -34,33 +57,74 @@ export function FeaturedExperiences() {
             From trekking and wildlife safari to village culture and adventure—discover what makes Wayanad special.
           </p>
         </motion.div>
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURED_EXPERIENCES.map((exp, index) => (
-            <motion.div
-              key={exp.slug}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
+        <div className="mt-12">
+          <div className="mb-4 flex items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={prev}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#0F9D8F]/30 bg-white/80 text-[#0F9D8F] shadow-sm transition hover:bg-[#0F9D8F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F] focus-visible:ring-offset-2"
+              aria-label="Previous experiences"
             >
-              <Link
-                href={`/experiences/${exp.slug}`}
-                className="card-premium group block overflow-hidden rounded-2xl transition-all hover:shadow-xl hover:ring-[#0F9D8F]/30"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={placeholderImages[exp.slug] ?? placeholderImages.trekking}
-                    alt={exp.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="absolute bottom-4 left-4 right-4 text-lg font-semibold text-white drop-shadow-lg">
-                    {exp.title}
-                  </span>
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#0F9D8F]/30 bg-white/80 text-[#0F9D8F] shadow-sm transition hover:bg-[#0F9D8F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F9D8F] focus-visible:ring-offset-2"
+              aria-label="Next experiences"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+
+          <div className="overflow-hidden">
+            <motion.div
+              className="flex"
+              animate={{ x: `-${(current * 100) / perView}%` }}
+              transition={{ duration: 0.55, ease: "easeInOut" }}
+            >
+              {FEATURED_EXPERIENCES.map((exp) => (
+                <div
+                  key={exp.slug}
+                  className="shrink-0 px-2 sm:px-4"
+                  style={{ width: `${100 / perView}%` }}
+                >
+                  <Link
+                    href={`/experiences/${exp.slug}`}
+                    className="card-premium group mx-auto block max-w-4xl overflow-hidden rounded-2xl transition-all hover:-translate-y-1 hover:shadow-xl hover:ring-[#0F9D8F]/30"
+                  >
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <img
+                        src={placeholderImages[exp.slug] ?? placeholderImages.trekking}
+                        alt={exp.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                      <span className="absolute bottom-4 left-4 right-4 text-lg font-semibold text-white drop-shadow-lg">
+                        {exp.title}
+                      </span>
+                    </div>
+                  </Link>
                 </div>
-              </Link>
+              ))}
             </motion.div>
-          ))}
+          </div>
+
+          <div className="mt-5 flex items-center justify-center gap-2">
+            {slides.map((slide) => (
+              <button
+                key={slide}
+                type="button"
+                onClick={() => setCurrent(slide)}
+                className={`h-2.5 rounded-full transition-all ${
+                  current === slide
+                    ? "w-7 bg-[#0F9D8F]"
+                    : "w-2.5 bg-[#0F9D8F]/30 hover:bg-[#0F9D8F]/50"
+                }`}
+                aria-label={`Go to slide ${slide + 1}`}
+              />
+            ))}
+          </div>
         </div>
         <motion.div
           className="mt-12 text-center"
